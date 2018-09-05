@@ -1,0 +1,4 @@
+TOPIC                         PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                          HOST            CLIENT-ID
+LOC-CONSTITUENT               0          437198948       437198953       5               bluemoon-core-0-2494d49b-b022-42d0-bd5d-14f076490439 /100.96.75.0    bluemoon-core-0
+LOC-CONSTITUENT               10         428726154       428726155       1               bluemoon-core-1-81b1ea74-9b9a-46e9-86ee-b5bf36c659e6 /100.96.25.0    bluemoon-core-1
+LOC-CONSTITUENT               11         432367967       432367969       2               bluemoon-core-2-b7368d5c-8003-406e-8fc8-1b6f5058782e /10.15.51.109   bluemoon-core-2

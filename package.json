@@ -1,0 +1,27 @@
+{
+  "name": "lag-collector",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jasmine",
+    "eslint": "eslint app.js lib/*",
+    "compile": "babel -d lib/ src/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "sqlite3": "4.0.2",
+    "restify": "7.2.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.4.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jasmine": "^2.8.3",
+    "jasmine": "^2.7.0"
+  }
+}
