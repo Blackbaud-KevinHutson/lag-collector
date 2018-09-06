@@ -1,0 +1,10 @@
+TOPIC                         PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                          HOST            CLIENT-ID
+RABBITS               0          437198948       437198953       321               kafka-client-sample-0-2494d49b-b022-42d0-bd5d-14f076490439 /100.96.75.0    kafka-client-sample-0
+RABBITS               1          438245258       438245259       1               kafka-client-sample-1-81b1ea74-9b9a-46e9-86ee-b5bf36c659e6 /100.96.25.0    kafka-client-sample-1
+RABBITS               2          426155228       426155228       0               kafka-client-sample-2-b7368d5c-8003-406e-8fc8-1b6f5058782e /10.15.51.109   kafka-client-sample-2
+TIGERS                 0          -               10563           -               kafka-client-sample-2-e2ca2764-7c56-46fd-b55e-2e26c80d3d62 /100.96.27.0    kafka-client-sample-2
+TIGERS                 1          13565           13565           0               kafka-client-sample-0-a75f034f-4787-45a1-8e41-b2a9f6f0afac /100.96.44.0    kafka-client-sample-0
+TIGERS                 2          15505           15505           0               kafka-client-sample-1-2e682482-7082-49b3-aae7-a2786356b895 /100.96.69.0    kafka-client-sample-1
+KIWIS            0          -               80              -               kafka-client-sample-1-9a9c5da0-4f06-488f-9f43-4c70bf77d648 /100.96.75.0    kafka-client-sample-1
+KIWIS            1          66              66              0               kafka-client-sample-2-346131eb-7ed7-4471-993d-3c8d9c9b90de /100.96.28.0    kafka-client-sample-2
+KIWIS            2          77              77              0               kafka-client-sample-0-100c4097-caf5-48b2-b1e4-fb18c16b33d2 /100.96.69.0    kafka-client-sample-0

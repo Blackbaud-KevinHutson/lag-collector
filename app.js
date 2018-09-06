@@ -1,22 +1,25 @@
-const restServer = require('./lib/rest');
+const expressServer = require('./lib/express');
 const sql = require('./lib/sql');
-const lagParser = require('./lib/parse_lag');
+// const { AsyncSubject, Observable, Subject, ReplaySubject, from, of, range } = require('rxjs');
 
-// Start REST server
-// restServer.start();
+// WIP -> retrieve the damned data we already have!!
 
-var database = sql.openDatabase();
-sql.doSql(database);
-sql.closeDatabase(database);
+//let all_rows = [];
 
+function sendDataToServer(all_rows) {
+  //console.log('$$$ lagRows=' + JSON.stringify(all_rows));
 
-function process_result(result) {
-  console.log('result -> ' + JSON.stringify(result));
+  // Start express server
+  expressServer.start(all_rows);
+  console.log('Refreshed server.');
 }
 
-// parse
-// lagParser.parse_lag(process_result);
+function start() {
+  // Fetch latest data
+ sql.query_lag(sendDataToServer);
+}
 
-console.log('done!');
+start();
+//console.log('Started.');
 
 
