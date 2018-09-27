@@ -1,10 +1,5 @@
 const expressServer = require('./lib/express');
 const sql = require('./lib/sql');
-// const { AsyncSubject, Observable, Subject, ReplaySubject, from, of, range } = require('rxjs');
-
-// WIP -> retrieve the damned data we already have!!
-
-//let all_rows = [];
 
 function sendDataToServer(all_rows) {
   //console.log('$$$ lagRows=' + JSON.stringify(all_rows));
@@ -20,6 +15,5 @@ function start() {
 }
 
 start();
-//console.log('Started.');
 
 

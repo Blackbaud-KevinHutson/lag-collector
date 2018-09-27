@@ -26,10 +26,7 @@ function process_lag_results(lagDir) {
         q.push(x, task_done);
     });
   });
-  // FIXME need an action here to move or delete the files when we are done so we 
-  // dont process them twice
 }
 
 process_lag_results(lagDir);
-// FIXME determine how we are "done", avoid race conditions and (use another queue?) clear directory of files when complete
 console.log('done!');
