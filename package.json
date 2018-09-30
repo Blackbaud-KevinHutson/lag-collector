@@ -5,10 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "jasmine",
-    "eslint": "eslint app.js lib/*",
-    "compile": "babel -d lib/ src/"
+    "eslint": "eslint app.js lib/*"
   },
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
@@ -22,8 +20,9 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.6.0",
-    "eslint": "^4.4.0",
+    "eslint": "^5.6.1",
     "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-config-google": "^0.10.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jasmine": "^2.8.3",
     "jasmine": "^2.7.0"
