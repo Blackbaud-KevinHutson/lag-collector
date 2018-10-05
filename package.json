@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jasmine",
+    "test": "jest --ci --coverage",
+    "test:watch": "jest --watch",
     "eslint": "eslint app.js lib/*"
   },
   "license": "MIT",
@@ -25,6 +26,6 @@
     "eslint-config-google": "^0.10.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jasmine": "^2.8.3",
-    "jasmine": "^2.7.0"
+    "jest": "^23.6.0"
   }
 }
