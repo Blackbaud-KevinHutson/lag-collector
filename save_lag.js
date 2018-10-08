@@ -1,22 +1,12 @@
 const lagParser = require('./lib/parse_lag');
 const sql = require('./lib/sql');
-var Queue = require('better-queue');
-let PropertiesReader = require('properties-reader');
-var _ = require('lodash');
-var fs = require('fs');
-const path = require('path');
+const Queue = require('better-queue');
+const PropertiesReader = require('properties-reader');
+const _ = require('lodash');
+const fileUtils = require('./lib/file_utils');
 
 let properties = PropertiesReader('settings.properties');
 let lagDir = properties.get('main.lag.files.dir');
-
-function delete_lag_files(directory, callback) {
-  console.log('>>> delete_lag_files directory='+directory);
-  fs.readdirSync(directory).forEach(file => {
-      fs.unlink(path.join(directory, file), err => {
-        if (err) throw err;
-      });
-    });
-}
 
 // Perform a database save for each task's "completion"
 function save_lag_item(err,result) {
@@ -27,7 +17,7 @@ function save_lag_item(err,result) {
 // Clean up our lag directory after completion so we don't re-process the same data
 function save_complete(err,result) {
   console.log('>> save_complete='+JSON.stringify(result));
-  delete_lag_files(lagDir);
+  fileUtils.delete_files_from_directory(lagDir);
 }
 
 // parse and feed it some data, using Queue to slow down the processing 
