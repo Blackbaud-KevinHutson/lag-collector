@@ -7,11 +7,12 @@ const fileUtils = require('./lib/file_utils');
 
 let properties = PropertiesReader('settings.properties');
 let lagDir = properties.get('main.lag.files.dir');
+let dbFilePath = properties.get('main.db.file.path');
 
 // Perform a database save for each task's "completion"
 function save_lag_item(err,result) {
   //console.log('>> saving result='+JSON.stringify(result));
-  sql.save_lag(result);
+  sql.save_lag(dbFilePath, result);
 }
 
 // Clean up our lag directory after completion so we don't re-process the same data
