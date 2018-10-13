@@ -8,6 +8,7 @@ const fileUtils = require('./lib/file_utils');
 let properties = PropertiesReader('settings.properties');
 let lagDir = properties.get('main.lag.files.dir');
 let dbFilePath = properties.get('main.db.file.path');
+let saveLagDelay = properties.get('main.save.lag.delay');
 
 // Perform a database save for each task's "completion"
 function save_lag_item(err,result) {
@@ -26,7 +27,7 @@ function save_complete(err,result) {
 function process_lag_results(lagDir) {
   var q = new Queue((input, cb) => {
     cb(null, input);
-  }, { afterProcessDelay: 100 });
+  }, { afterProcessDelay: saveLagDelay });
   
   lagParser.parse(lagDir, (lag_items) => {
     _.forEach(lag_items, function(lag_item) {
