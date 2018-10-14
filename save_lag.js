@@ -4,6 +4,7 @@ const Queue = require('better-queue');
 const PropertiesReader = require('properties-reader');
 const _ = require('lodash');
 const fileUtils = require('./lib/file_utils');
+const contentGenerator = require('./lib/content_generator');
 
 let properties = PropertiesReader('settings.properties');
 let lagDir = properties.get('main.lag.files.dir');
@@ -22,6 +23,15 @@ function save_complete(err,result) {
   fileUtils.delete_files_from_directory(lagDir);
 }
 
+function generate(err,result) {
+  console.log('>> generate='+JSON.stringify(result));
+  sql.query_apps_and_topics(dbFilePath, (appAndTopicRows) => {
+    sql.query_lag(dbFilePath, (lagRows) => {
+      contentGenerator.generatePages(appAndTopicRows, lagRows);
+    });
+  });
+}
+
 // parse and feed it some data, using Queue to slow down the processing 
 // using `afterProcessDelay` so that our sqlite3 database can handle it.
 function process_lag_results(lagDir) {
@@ -34,6 +44,7 @@ function process_lag_results(lagDir) {
       q.push(lag_item, save_lag_item);
     });  
     q.push('Job complete.', save_complete);
+    q.push('Generate static pages.', generate);
   });
 }
 

@@ -3,3 +3,5 @@ npm-debug.log
 .vscode
 build
 coverage
+public/charts
+public/index.htm
