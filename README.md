@@ -24,7 +24,7 @@ module.exports = [
 ];
 
 ```
-lag-collector will invoke a BASH script `get_lag.sh` to fire `kafka-consumer-groups`, running this on an interval based on `save.lag.execution.interval` (TODO).
+lag-collector will invoke a BASH script `get_lag.sh` to fire `kafka-consumer-groups`, running this on an interval based on `save.lag.execution.interval` (TODO). Note that you will need to edit `get_lag.sh` to fill in your `--bootstrap-server` argument.
 
 Example execution: `./get_lag.sh consumer1 consumer3 consumer3`.
 This script should save the lag to `lag.files.dir`, currently `public/data`.
