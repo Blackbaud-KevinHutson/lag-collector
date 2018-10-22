@@ -11,11 +11,10 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.4",
-    "sqlite3": "4.0.2",
     "moment": "2.22.2",
     "express": "4.16.3",
     "properties-reader": "0.0.16",
-    "better-queue": "3.8.10"
+    "fast-glob": "2.2.3"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
