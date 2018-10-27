@@ -17,7 +17,7 @@ Stores lag data in JSON files in `lag.files.dir`. Each time we fetch the data, w
 Note that if you are using this with Confluent's Cloud offering, you will also need to install their ccloud CLI tool and point `kafka-consumer-groups` at the location of your ccloud config file. You can see an example of this in `get_lag.sh` as `--command-config ~/.ccloud/config`.
 
 ## Configuration
-All the settings except the consumer list live in `settings.properties`.
+All the settings except the consumer list live in `lib/settings.js` defined as a list of keys/values.
 To add your list of consumers, edit consumers.js to match this example:
 ```
 module.exports = [
