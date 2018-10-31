@@ -5,7 +5,7 @@ const saveLag = require('./lib/save_lag');
 const fetchVersion = require('./lib/fetch_version');
 
 function startLagRetrieval() {
-  log.log('INFO','startLagRetrieval');
+  log.info('startLagRetrieval');
   getLag.start(saveDateAndScheduleJob);
 }
 
@@ -17,7 +17,7 @@ function start() {
   expressServer.start();  
   startLagRetrieval();  
   fetchVersion.fetchAppVersion(() => {});
-  log.log('INFO','started.');
+  log.info('started.');
 }
 
 start();
