@@ -1,6 +1,7 @@
 # lag-collector
 
 [![Build Status](https://travis-ci.com/mrjabba/lag-collector.svg?branch=master)](https://travis-ci.com/mrjabba/lag-collector)
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg?style=flat-square)](https://github.com/Flet/semistandard)
 
 A node based application that parses and collects lag results from Apache Kafka's `kafka-consumer-groups` CLI tool and renders the results in a web page with graphs.
 
