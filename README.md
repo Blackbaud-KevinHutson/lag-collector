@@ -21,8 +21,8 @@ All the settings except the consumer list live in `lib/settings.js` defined as a
 To add your list of consumers, edit consumers.js to match this example:
 ```
 module.exports = [
-    {'group_name': 'consumer1-prod-apps', 'consumer_id_prefix': 'consumer1'},
-    {'group_name': 'consumer2', 'consumer_id_prefix': 'consumer2'}
+    {'groupName': 'consumer1-prod-apps', 'clientIdPrefix': 'consumer1'},
+    {'groupName': 'consumer2', 'clientIdPrefix': 'consumer2'}
 ];
 
 ```

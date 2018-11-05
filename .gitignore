@@ -5,3 +5,5 @@ build
 coverage
 public/charts
 public/index.htm
+public/data
+log
