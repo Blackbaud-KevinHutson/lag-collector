@@ -2,6 +2,6 @@
 
 module.exports = {
   collectCoverageFrom: [
-    'lib/**/*.js',
-  ],
+    'lib/**/*.js'
+  ]
 };
