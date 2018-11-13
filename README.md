@@ -41,4 +41,4 @@ Simple running the app with `node app.js` will execute all the steps to generate
 Finally, navigate to https://localhost:3000 to see your lag chart(s).
 
 ## Development
-If you install `supervisor` globallay, then you can run `supervisor app.js` for hot reloading.
+If you install `supervisor` globally, then you can run `supervisor app.js` for hot reloading.
