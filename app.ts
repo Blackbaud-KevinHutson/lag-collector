@@ -4,7 +4,7 @@ const getLag = require('./lib/get_lag');
 const saveLag = require('./lib/save_lag');
 const fetchVersion = require('./lib/fetch_version');
 
-function saveDateAndScheduleJob (lagData) {
+function saveDateAndScheduleJob (lagData: any) {
   saveLag.processLagResults(lagData);
 }
 

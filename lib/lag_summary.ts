@@ -1,23 +1,23 @@
 const log = require('./logger');
-let _ = require('lodash');
+import _ from "lodash";
 
 // Squash lagItems into a row per topic for each app, summing the lag across partitions
 // This can be used for logging/alerting purposes for total lag per topic
-function logTotalLagForTopicByApp (lagItems) {
+export function logTotalLagForTopicByApp (lagItems :any) {
   let byConsumer = _.groupBy(lagItems, 'consumerName');
   return _.flatten(Object.keys(byConsumer)
     .map(consumerName => logConsumerLag(byConsumer[consumerName])));
 }
 
-function logConsumerLag (consumerLag) {
+function logConsumerLag (consumerLag :any) {
   let byTopic = _.groupBy(consumerLag, 'TOPIC');
-  let summarizedLagItems = [];
+  let summarizedLagItems :any = [];
   let consumerName = '';
   let lagTime = 0;
-  _.each(Object.keys(byTopic), (topic) => {
+  _.each(Object.keys(byTopic), (topic :any) => {
     let totalLag = 0;
     let topicLagItems = byTopic[topic];
-    _.each(topicLagItems, (item) => {
+    _.each(topicLagItems, (item :any) => {
       if (!consumerName) {
         consumerName = item.consumerName;
       }
@@ -37,4 +37,4 @@ function logConsumerLag (consumerLag) {
   return summarizedLagItems;
 }
 
-module.exports = { logTotalLagForTopicByApp };
+// module.exports = { logTotalLagForTopicByApp };

@@ -1,3 +1,9 @@
+# Typescript conversion (remove me when done)
+- ran into issue with `outDir`. Just do `tsc --outDir dist` for now.
+- following this https://alligator.io/typescript/new-project/
+- renamed all .js to .ts. need to fix types. just do any for start until all errors removed
+- then start typing
+
 # lag-collector
 
 [![Build Status](https://travis-ci.com/mrjabba/lag-collector.svg?branch=master)](https://travis-ci.com/mrjabba/lag-collector)

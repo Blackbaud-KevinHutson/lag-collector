@@ -1,9 +1,10 @@
 const settings = require('./settings');
 const logDir = settings['log.files.dir'];
 const logLevel = settings['log.level'];
-const { createLogger, format, transports } = require('winston');
+// const { createLogger, format, transports } = require('winston');
+import { createLogger, format, transports } from "winston"
 require('winston-daily-rotate-file');
-const fs = require('fs');
+import fs from "fs";
 const env = process.env.NODE_ENV || 'development'; // eslint-disable-line no-process-env
 
 // Create the log directory if it does not exist
@@ -19,6 +20,7 @@ const dailyRotateFileTransport = new transports.DailyRotateFile({
 });
 
 function getEnvSensitiveFormatting () {
+  
   if (env === 'development') {
     return format.combine(
       format.colorize(),
@@ -35,7 +37,7 @@ function getEnvSensitiveFormatting () {
   }
 }
 
-const log = createLogger({
+export const log = createLogger({
   // change level if in dev environment versus production
   level: env === 'development' ? 'verbose' : logLevel,
   format: format.combine(
@@ -54,4 +56,4 @@ const log = createLogger({
 });
 
 log.info(`logLevel configured as ${logLevel}`);
-module.exports = log;
+// module.exports = log;
