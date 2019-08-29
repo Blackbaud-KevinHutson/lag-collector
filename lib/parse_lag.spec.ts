@@ -51,7 +51,7 @@ describe('parseLag', () => {
         lagTime: expectedDate}
     ];
 
-    function callback (data) {
+    function callback (data: any) {
       expect(data).toEqual(expectedData);
       done();
     }

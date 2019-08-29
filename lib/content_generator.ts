@@ -28,7 +28,7 @@ function baseJSDeclarations () {
   `;
 }
 
-function navBarTemplate (app :any) {
+function navBarTemplate (app? :any) {
   let now = dateUtils.formattedTime();
   let appCrumb = app ? `<li class="breadcrumb-item active" aria-current="page">${app}</li>` : '';
   return `
@@ -185,7 +185,7 @@ function listGroup (items :any) {
   return `<p class="card-text"><ul class="list-group">${items}</ul></p>`;
 }
 
-function cardTemplate (cardTitle :any, cardText :any, cardSubtitle :any) {
+function cardTemplate (cardTitle :any, cardText :any, cardSubtitle? :any) {
   if (!cardSubtitle) {
     cardSubtitle = '';
   }
@@ -237,7 +237,7 @@ function topicsForApp (lagForApp :any) {
   return Array.from(topics);
 }
 
-function generatePages (currentSummarizedLagItems :any, lagRows :any) {
+export function generatePages (currentSummarizedLagItems :any, lagRows :any) {
   let htmlItems = generateMainMenu(currentSummarizedLagItems);
   let indexPageContent = indexPageTemplate(htmlItems);
   generatePage('index', 'public', indexPageContent);
@@ -256,4 +256,4 @@ function generatePages (currentSummarizedLagItems :any, lagRows :any) {
   });
 }
 
-module.exports = { generatePages };
+// module.exports = { generatePages };
