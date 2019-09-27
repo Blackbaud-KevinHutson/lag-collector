@@ -36,7 +36,8 @@
       "jest"
     ],
     "ignore": [
-      "public/js/**"
+      "public/js/**",
+      "dist/**"
     ]
   }
 }
