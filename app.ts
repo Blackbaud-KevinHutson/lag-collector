@@ -1,4 +1,4 @@
-const log = require('./lib/logger');
+import { log } from "./lib/logger";
 const expressServer = require('./lib/express');
 const getLag = require('./lib/get_lag');
 const saveLag = require('./lib/save_lag');

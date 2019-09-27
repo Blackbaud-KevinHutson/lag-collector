@@ -1,4 +1,4 @@
-const log = require('./logger');
+import { log } from "./logger";
 import _ from "lodash";
 
 // Squash lagItems into a row per topic for each app, summing the lag across partitions
@@ -32,7 +32,7 @@ function logConsumerLag (consumerLag :any) {
       TOTAL_TOPIC_LAG: totalLag,
       lagTime: lagTime
     });
-    log.debug(`consumerName=${consumerName} topic=${topic} totalTopicLag=${totalLag} lagTime=${lagTime}`);
+      log.debug(`consumerName=${consumerName} topic=${topic} totalTopicLag=${totalLag} lagTime=${lagTime}`);
   });
   return summarizedLagItems;
 }

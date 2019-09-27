@@ -1,6 +1,6 @@
 // Attempts to use the underlying git repo to display the latest commit in our logs.
 const { spawn } = require('child_process');
-const log = require('./logger');
+import { log } from "./logger";
 
 export function fetchAppVersion (callback :any) {
   let sha = '';

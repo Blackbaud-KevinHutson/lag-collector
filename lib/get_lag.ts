@@ -1,6 +1,6 @@
-// Spawns a seperate process to execute get_lag.sh and gather lag results
+// Spawns a separate process to execute get_lag.sh and gather lag results
 // A callback returns the results
-const log = require('./logger');
+import { log } from "./logger";
 import { spawn } from "child_process";
 let path = require('path');
 const consumerList = require('./consumers');
