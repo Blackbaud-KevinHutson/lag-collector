@@ -2,6 +2,10 @@
   "name": "lag-collector",
   "version": "1.0.1",
   "description": "",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/mrjabba/lag-collector"
+  },
   "main": "app.js",
   "scripts": {
     "test": "semistandard --verbose | snazzy && jest --ci --coverage",
