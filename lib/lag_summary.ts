@@ -36,5 +36,3 @@ function logConsumerLag (consumerLag :any) {
   });
   return summarizedLagItems;
 }
-
-// module.exports = { logTotalLagForTopicByApp };

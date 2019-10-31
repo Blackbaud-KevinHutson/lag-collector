@@ -36,5 +36,3 @@ export function start (callback :any) {
     callback(lagData);
   });
 }
-
-// module.exports = { start };

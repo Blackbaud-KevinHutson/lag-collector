@@ -68,5 +68,3 @@ export function parse (lagData :any, callback :any) {
   });
   callback(lines);
 }
-
-// module.exports = { parse };

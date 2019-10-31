@@ -44,5 +44,3 @@ export function processLagResults (lagData :any) {
     readFromDataStore(currentSummarizedLagItems);
   });
 }
-
-// module.exports = { processLagResults, removeOldLagFiles };

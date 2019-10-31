@@ -255,5 +255,3 @@ export function generatePages (currentSummarizedLagItems :any, lagRows :any) {
     generatePage(app, 'public/charts', appPageContent);
   });
 }
-
-// module.exports = { generatePages };

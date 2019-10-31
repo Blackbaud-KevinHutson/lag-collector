@@ -108,5 +108,3 @@ export function buildChartForApp (application :any, lagByApplication :any) {
   chartsAsJavaScript = chartsAsJavaScript + transformChartDataToJavaScript(chartTopics);
   return chartsAsJavaScript;
 }
-
-// module.exports = { buildChartForApp, groupDataByApplication };

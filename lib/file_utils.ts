@@ -84,5 +84,3 @@ export function deleteExpiredDatastoreFiles () {
     });
   });
 }
-
-// module.exports = { readFiles, writeFile, deleteFilesFromDirectory, deleteExpiredDatastoreFiles };
