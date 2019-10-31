@@ -18,8 +18,8 @@ Stores lag data in JSON files in `lag.files.dir`. Each time we fetch the data, w
 Note that if you are using this with Confluent's Cloud offering, you will also need to install their ccloud CLI tool and point `kafka-consumer-groups` at the location of your ccloud config file. You can see an example of this in `get_lag.sh` as `--command-config ~/.ccloud/config`.
 
 ## Configuration
-All the settings except the consumer list live in `lib/settings.js` defined as a list of keys/values.
-To add your list of consumers, edit consumers.js to match this example:
+All the settings except the consumer list live in `lib/settings.ts` defined as a list of keys/values.
+To add your list of consumers, edit `consumers.ts` to match this example:
 ```
 module.exports = [
     {'groupName': 'consumer1-prod-apps', 'clientIdPrefix': 'consumer1'},
@@ -33,12 +33,9 @@ Example execution: `./get_lag.sh consumer1 consumer3 consumer3`.
 This script should save the lag to `lag.files.dir`, currently `public/data`.
 
 ## Starting the app
-Simple running the app with `node app.js` will execute all the steps to generate the lag charts. 
+Simple running the app with `node dist/app.ts` (make sure you compile first, with `tsc`) will execute all the steps to generate the lag charts. 
 - Each time the app starts, it will:
     * save the lag to the data store (filesystem)
     * generate static content (see `public` directory) and serve it up
 
 Finally, navigate to https://localhost:3000 to see your lag chart(s).
-
-## Development
-If you install `supervisor` globally, then you can run `supervisor app.js` for hot reloading.

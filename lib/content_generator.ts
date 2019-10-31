@@ -7,11 +7,11 @@ const consumerList = require('./consumers');
 
 const HTML_TITLE = 'Kafka lag-collector';
 
-function generatePage (app, parentDirectory, content) {
+function generatePage (app :any, parentDirectory :any, content :any) {
   if (!fs.existsSync(parentDirectory)) {
     fs.mkdirSync(parentDirectory);
   }
-  fs.writeFile(`${parentDirectory}/${app}.htm`, content, (err) => {
+  fs.writeFile(`${parentDirectory}/${app}.htm`, content, (err :any) => {
     if (err) {
       throw err;
     }
@@ -28,7 +28,7 @@ function baseJSDeclarations () {
   `;
 }
 
-function navBarTemplate (app) {
+function navBarTemplate (app? :any) {
   let now = dateUtils.formattedTime();
   let appCrumb = app ? `<li class="breadcrumb-item active" aria-current="page">${app}</li>` : '';
   return `
@@ -52,16 +52,16 @@ function navBarTemplate (app) {
   `;
 }
 
-function appPageDivTemplate (app, topics) {
+function appPageDivTemplate (app :any, topics :any) {
   let uniqueTopics = _.uniq(topics);
   let topicDivs = '';
-  _.each(uniqueTopics, (topic) => {
+  _.each(uniqueTopics, (topic :any) => {
     topicDivs = topicDivs + `<a name="chart-${app}-${topic}"></a></a><div id="ch-${app}-${topic}" style="width:100%; height:400px;"></div>`;
   });
   return `<div id="${app}" class="tabcontent">${topicDivs}</div>`;
 }
 
-function appPageTemplate (app, topics, appChartData) {
+function appPageTemplate (app :any, topics :any, appChartData :any) {
   let divs = appPageDivTemplate(app, topics);
   return `
   <!doctype html>
@@ -105,7 +105,7 @@ function appPageTemplate (app, topics, appChartData) {
   `;
 }
 
-function indexPageTemplate (apps) {
+function indexPageTemplate (apps :any) {
   return `
     <!doctype html>
     <html lang="en">
@@ -131,26 +131,26 @@ function indexPageTemplate (apps) {
     `;
 }
 
-function cardTitleTemplate (app) {
+function cardTitleTemplate (app :any) {
   return `<h4 class="card-title"><a href="charts/${app}.htm">${app}</a></h4>\n`;
 }
 
-function cardSubTitleTemplate (subtitle) {
+function cardSubTitleTemplate (subtitle :any) {
   return `<h6 class="card-subtitle mb-2 text-muted">${subtitle}</h6>\n`;
 }
 
-function rowTemplate (content) {
+function rowTemplate (content :any) {
   return `<div class="row">${content}</div>`;
 }
 
-function columnTemplate (content, width) {
+function columnTemplate (content :any, width :any) {
   if (!width) {
     width = 6;
   }
   return `<div class="span${width} ml-2 mr-2">${content}</div>`;
 }
 
-function warningIndicatorColorClass (lagNumber) {
+function warningIndicatorColorClass (lagNumber :any) {
   if (lagNumber === 0 || !lagNumber) {
     return 'success';
   } else if (lagNumber < 10000) {
@@ -162,15 +162,15 @@ function warningIndicatorColorClass (lagNumber) {
   }
 }
 
-function formatLag (lag) {
+function formatLag (lag :any) {
   return lag ? lag.toLocaleString() : 0;
 }
 
-function legendGroupItem (item, itemType) {
+function legendGroupItem (item :any, itemType :any) {
   return `<li class="list-group-item list-group-item-${itemType}"><small>${item}</small></li>`;
 }
 
-function listGroupItem (app, topic, lag) {
+function listGroupItem (app :any, topic :any, lag :any) {
   let nameTag = `chart-${app}-${topic}`;
   const colorClass = warningIndicatorColorClass(lag);
   return `<li class="list-group-item">
@@ -181,20 +181,20 @@ function listGroupItem (app, topic, lag) {
   `;
 }
 
-function listGroup (items) {
+function listGroup (items :any) {
   return `<p class="card-text"><ul class="list-group">${items}</ul></p>`;
 }
 
-function cardTemplate (cardTitle, cardText, cardSubtitle) {
+function cardTemplate (cardTitle :any, cardText :any, cardSubtitle? :any) {
   if (!cardSubtitle) {
     cardSubtitle = '';
   }
   return `<div class="card mt-2 mb-2"><div class="card-body">${cardTitle}${cardSubtitle}${cardText}</div></div>`;
 }
 
-function buildCardForConsumer (consumerName, consumerLag) {
+function buildCardForConsumer (consumerName :any, consumerLag :any) {
   let cardTitle = cardTitleTemplate(consumerName);
-  let items = consumerLag.map(lag => listGroupItem(consumerName, lag.TOPIC, lag.TOTAL_TOPIC_LAG)).join('');
+  let items = consumerLag.map((lag :any) => listGroupItem(consumerName, lag.TOPIC, lag.TOTAL_TOPIC_LAG)).join('');
   const listGroupItems = listGroup(items);
   return cardTemplate(cardTitle, listGroupItems);
 }
@@ -209,7 +209,7 @@ function generateLegend () {
   return cardTemplate(cardTitle, items, cardSubTitleTemplate('Lag colors at each range'));
 }
 
-function generateMainMenu (currentSummarizedLagItems) {
+function generateMainMenu (currentSummarizedLagItems :any) {
   let lagByConsumer = _.groupBy(currentSummarizedLagItems, 'consumerName');
   // FIXME another undefined issue. fix it by hack for now
   delete lagByConsumer.undefined;
@@ -229,22 +229,22 @@ function generateMainMenu (currentSummarizedLagItems) {
   return rowTemplate(`${columnTemplate(leftContent, 6)}${columnTemplate(rightContent, 6)}`);
 }
 
-function topicsForApp (lagForApp) {
+function topicsForApp (lagForApp :any) {
   let topics = new Set();
-  _.each(lagForApp, (lagItem) => {
+  _.each(lagForApp, (lagItem :any) => {
     return topics.add(lagItem.TOPIC);
   });
   return Array.from(topics);
 }
 
-function generatePages (currentSummarizedLagItems, lagRows) {
+export function generatePages (currentSummarizedLagItems :any, lagRows :any) {
   let htmlItems = generateMainMenu(currentSummarizedLagItems);
   let indexPageContent = indexPageTemplate(htmlItems);
   generatePage('index', 'public', indexPageContent);
 
   let lagByApplication = transform.groupDataByApplication(lagRows);
-  let consumerGroups = consumerList.map(consumer => consumer.groupName);
-  _.each(consumerGroups, (app) => {
+  let consumerGroups = consumerList.map((consumer :any) => consumer.groupName);
+  _.each(consumerGroups, (app :any) => {
     log.info(`generatePages app=${app}`);
     let appChartData = transform.buildChartForApp(app, lagByApplication);
 
@@ -255,5 +255,3 @@ function generatePages (currentSummarizedLagItems, lagRows) {
     generatePage(app, 'public/charts', appPageContent);
   });
 }
-
-module.exports = { generatePages };

@@ -1,27 +1,27 @@
-let _ = require('lodash');
+import _ from "lodash";
 const settings = require('./settings');
 let chartType = settings['chart.time.type'];
 const dateUtils = require('./date_utils');
 
 // Returns our data grouped by application
-function groupDataByApplication (lagData) {
+export function groupDataByApplication (lagData :any) {
   let lagByGroup = _.groupBy(lagData, 'consumerName');
   // FIXME another undefined issue. fix it by hack for now
   delete lagByGroup.undefined;
   return lagByGroup;
 }
 
-function getContainerId (app, topic) {
+function getContainerId (app :any, topic :any) {
   return `ch-${app}-${topic}`;
 }
 
-function formatLagTime (value) {
+function formatLagTime (value :any) {
   return chartType === 0 ? dateUtils.formattedTime(value) : value;
 }
 
 // Simplify partitions to just what we want: lag and time
-function reducePartitionsToDataPoints (partitions) {
-  let reducedPartitions = [];
+function reducePartitionsToDataPoints (partitions :any) {
+  let reducedPartitions :any = [];
   _.forEach(partitions, (partitionLagItem) => {
     let lagTime = formatLagTime(partitionLagItem.lagTime);
     let lagValue = parseInt(partitionLagItem.LAG);
@@ -32,10 +32,10 @@ function reducePartitionsToDataPoints (partitions) {
 
 // This takes our date of partitions and transforms it to a group of items in
 // a High Chart compatible "series".
-function createSeriesFromTopicPartitions (topicLag) {
+function createSeriesFromTopicPartitions (topicLag :any) {
   let lagGroupedByPartition = _.groupBy(topicLag, 'PARTITION');
-  let items = [];
-  _.forEach(lagGroupedByPartition, (partitions, partition) => {
+  let items :any = [];
+  _.forEach(lagGroupedByPartition, (partitions :any, partition :any) => {
     let reducedPartitions = reducePartitionsToDataPoints(partitions);
     // Create a series containing with a "data" object that High Chart wants
     let series = {series: [{data: reducedPartitions}]};
@@ -51,11 +51,11 @@ function createSeriesFromTopicPartitions (topicLag) {
 // but at this point it's still an intermediate format
 // it feels like this could be merged into other functions??
 // we have application and topic readily handy in a collection of applications
-function buildChartsTopics (application, applicationLag) {
-  let transformedData = [];
+function buildChartsTopics (application :any, applicationLag :any) {
+  let transformedData :any = [];
   let lagByTopic = _.groupBy(applicationLag, 'TOPIC');
   // at this point, this is a group of lag items all grouped by topic inside a single application
-  _.forEach(lagByTopic, (topicLag, topic) => {
+  _.forEach(lagByTopic, (topicLag :any, topic :any) => {
     let partitions = createSeriesFromTopicPartitions(topicLag);
     transformedData.push({
       APPLICATION: application,
@@ -70,7 +70,7 @@ function buildChartsTopics (application, applicationLag) {
 // application - string
 // topic - string
 // series - an array of lag data points. See https://www.highcharts.com/docs/chart-concepts/series
-function chartTemplate (application, topic, series) {
+function chartTemplate (application :any, topic :any, series :any) {
   let divId = getContainerId(application, topic);
   return `
       Highcharts.chart('${divId}', { 
@@ -82,14 +82,14 @@ function chartTemplate (application, topic, series) {
 
 // This will take our chart data and run it through a template to produce
 // a series of JavaScript objects which create a new High Chart for each topic in an application
-function transformChartDataToJavaScript (chartTopics) {
+function transformChartDataToJavaScript (chartTopics :any) {
   let chartsAsJavaScript = '';
-  _.forEach(chartTopics, function (value) {
+  _.forEach(chartTopics, function (value :any) {
     let application = value.APPLICATION;
     let topic = value.TOPIC;
     let partitions = value.PARTITIONS;
-    let series = [];
-    _.forEach(partitions, function (partition) {
+    let series :any = [];
+    _.forEach(partitions, function (partition :any) {
       // FIXME p["series"]["series"][0] <- code smell. we don't seem to need to be nested this deep
       let partitionData = partition.series.series[0];
       Object.assign(partitionData, {name: `P${partition.PARTITION}`});
@@ -102,11 +102,9 @@ function transformChartDataToJavaScript (chartTopics) {
   return chartsAsJavaScript;
 }
 
-function buildChartForApp (application, lagByApplication) {
+export function buildChartForApp (application :any, lagByApplication :any) {
   let chartsAsJavaScript = '';
   let chartTopics = buildChartsTopics(application, lagByApplication[application]);
   chartsAsJavaScript = chartsAsJavaScript + transformChartDataToJavaScript(chartTopics);
   return chartsAsJavaScript;
 }
-
-module.exports = { buildChartForApp, groupDataByApplication };
