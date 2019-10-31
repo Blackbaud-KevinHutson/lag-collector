@@ -73,7 +73,7 @@ export function deleteExpiredDatastoreFiles () {
           const errorMessage = `Error checking the expiration of filePath=${filePath} err=${err}`;
           log.error(errorMessage);
         }
-        if (isDataStoreFileExpired(fileMetaData.mtime)) {
+        if (isDataStoreFileExpired(fileMetaData.ctime)) {
           fs.unlink((filePath :any, errInner :any) => {
             if (errInner) {
               log.error(`Error deleting expired file filePath=${filePath} err=${errInner}`);
