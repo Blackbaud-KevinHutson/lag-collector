@@ -6,7 +6,7 @@
   "scripts": {
     "test": "semistandard --verbose | snazzy && jest --ci --coverage",
     "test:watch": "jest --watch",
-    "compile": "tsc --outDir dist"
+    "compile": "tsc"
   },
   "license": "MIT",
   "dependencies": {
