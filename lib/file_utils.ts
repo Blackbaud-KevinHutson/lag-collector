@@ -1,4 +1,4 @@
-const log = require('./logger');
+import { log } from "./logger";
 let fs = require('fs');
 const path = require('path');
 import _ from "lodash";
@@ -74,7 +74,7 @@ export function deleteExpiredDatastoreFiles () {
           log.error(errorMessage);
         }
         if (isDataStoreFileExpired(fileMetaData.ctime)) {
-          fs.unlink((filePath :any, errInner :any) => {
+          fs.unlink(filePath, (errInner :any) => {
             if (errInner) {
               log.error(`Error deleting expired file filePath=${filePath} err=${errInner}`);
             }

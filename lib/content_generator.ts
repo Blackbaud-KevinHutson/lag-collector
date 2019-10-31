@@ -1,4 +1,4 @@
-const log = require('./logger');
+import { log } from "./logger";
 const transform = require('./transform_to_chart');
 let fs = require('fs');
 let _ = require('lodash');

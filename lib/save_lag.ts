@@ -1,4 +1,4 @@
-const log = require('./logger');
+import { log } from "./logger";
 const lagParser = require('./parse_lag');
 const fileUtils = require('./file_utils');
 const contentGenerator = require('./content_generator');
